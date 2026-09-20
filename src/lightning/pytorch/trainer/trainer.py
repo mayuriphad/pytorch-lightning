@@ -23,10 +23,10 @@
 import logging
 import math
 import os
-from collections.abc import Generator, Iterable
+from collections.abc import Generator, Iterable, Sequence
 from contextlib import contextmanager
 from datetime import timedelta
-from typing import Any, Optional, Union, Sequence
+from typing import Any, Optional, Union
 from weakref import proxy
 
 import torch

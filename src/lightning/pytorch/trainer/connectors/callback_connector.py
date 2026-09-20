@@ -16,7 +16,7 @@ import logging
 import os
 from collections.abc import Sequence
 from datetime import timedelta
-from typing import Optional, Union, Sequence
+from typing import Optional, Union
 
 from lightning_utilities.core.imports import RequirementCache
 
