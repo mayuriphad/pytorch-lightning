@@ -26,7 +26,7 @@ import os
 from collections.abc import Generator, Iterable
 from contextlib import contextmanager
 from datetime import timedelta
-from typing import Any, Optional, Union
+from typing import Any, Optional, Union, Sequence
 from weakref import proxy
 
 import torch
@@ -97,7 +97,7 @@ class Trainer:
         num_nodes: int = 1,
         precision: Optional[_PRECISION_INPUT] = None,
         logger: Optional[Union[Logger, Iterable[Logger], bool]] = None,
-        callbacks: Optional[Union[list[Callback], Callback]] = None,
+        callbacks: Optional[Union[Sequence[Callback], Callback]] = None,
         fast_dev_run: Union[int, bool] = False,
         max_epochs: Optional[int] = None,
         min_epochs: Optional[int] = None,
