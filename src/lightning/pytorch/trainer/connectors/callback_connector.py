@@ -16,7 +16,7 @@ import logging
 import os
 from collections.abc import Sequence
 from datetime import timedelta
-from typing import Optional, Union
+from typing import Optional, Union, Sequence
 
 from lightning_utilities.core.imports import RequirementCache
 
@@ -52,7 +52,7 @@ class _CallbackConnector:
 
     def on_trainer_init(
         self,
-        callbacks: Optional[Union[list[Callback], Callback]],
+        callbacks: Optional[Union[Sequence[Callback], Callback]],
         enable_checkpointing: bool,
         enable_progress_bar: bool,
         default_root_dir: Optional[str],
@@ -237,7 +237,7 @@ class _CallbackConnector:
         trainer.callbacks = all_callbacks
 
     @staticmethod
-    def _reorder_callbacks(callbacks: list[Callback]) -> list[Callback]:
+    def _reorder_callbacks(callbacks: Sequence[Callback]) -> list[Callback]:
         """Moves all the tuner specific callbacks at the beginning of the list and all the `ModelCheckpoint` callbacks
         to the end of the list. The sequential order within the group of checkpoint callbacks is preserved, as well as
         the order of all other callbacks.
@@ -265,7 +265,7 @@ class _CallbackConnector:
         return tuner_callbacks + other_callbacks + checkpoint_callbacks
 
 
-def _validate_callbacks_list(callbacks: list[Callback]) -> None:
+def _validate_callbacks_list(callbacks: Sequence[Callback]) -> None:
     stateful_callbacks = [cb for cb in callbacks if is_overridden("state_dict", instance=cb, parent=Callback)]
     seen_callbacks = set()
     for callback in stateful_callbacks:
